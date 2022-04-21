@@ -15,4 +15,3 @@ class TestPilDisplay(TestCase):
         image = Image.new("1", (self.WIDTH, self.HEIGHT))
         display = PilDisplay()
         display.show(image)
-        sleep(5)
