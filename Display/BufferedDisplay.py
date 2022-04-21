@@ -3,7 +3,7 @@ from PIL.Image import Image
 from Display.Display import Display
 
 
-class TestDisplay(Display):
+class BufferedDisplay(Display):
 
     def __init__(self):
         self.buffer = ""

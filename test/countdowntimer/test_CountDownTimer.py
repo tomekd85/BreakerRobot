@@ -3,7 +3,7 @@ import unittest
 
 from Display.Display import Display
 from countdowntimer.CountDownTimer import CountDownTimer
-from test.testDisplay import TestDisplay
+from Display.BufferedDisplay import BufferedDisplay
 
 
 class MyTestCase(unittest.TestCase):
@@ -12,12 +12,12 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(True, True)  # add assertion here
 
     def test_prints_time_left_every_second(self):
-        display = TestDisplay()
+        display = BufferedDisplay()
         CountDownTimer(display).count(2)
         self.assertEqual("00:0200:0100:00", display.get_buffer())
 
     def test_counter_lasts_the_time_specified(self):
-        display = TestDisplay()
+        display = BufferedDisplay()
         duration = 2
         now = time.time()
         CountDownTimer(display).count(duration)
