@@ -10,7 +10,7 @@ from Display.OledDisplay.OledDisplay import OledDisplay
 
 if __name__ == "__main__":
     # Define the Reset Pin
-    oled = OledDisplay()
+    oled = OledDisplay(2)
 
     # Clear display.
     oled.fill(0)

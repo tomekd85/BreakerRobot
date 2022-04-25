@@ -2,7 +2,6 @@ import time
 from threading import Thread
 
 import adafruit_ssd1306
-import adafruit_displayio_ssd1306
 import board
 import digitalio
 from PIL.Image import Image
@@ -12,9 +11,10 @@ from Display.Display import Display
 
 class OledDisplay(Display):
 
-    def __init__(self):
+    def __init__(self, refresh_rate: int = 3):
         self.WIDTH = 128
         self.HEIGHT = 64
+        self.REFRESH_RATE = refresh_rate
         self.oled = self.__initialize_oled()
         self.display_update_thread = Thread(target=self.__reset_oled, daemon=True)
         self.display_update_thread.start()
@@ -36,7 +36,7 @@ class OledDisplay(Display):
 
     def __reset_oled(self):
         while True:
-            time.sleep(4)
+            time.sleep(self.REFRESH_RATE)
             temp_buff = bytearray((self.oled.height // 8) * self.oled.width)
             temp_buff[:] = self.oled.buf
             self.oled.poweron()
