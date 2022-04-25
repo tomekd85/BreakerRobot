@@ -16,8 +16,8 @@ class OledDisplay(Display):
         self.HEIGHT = 64
         self.REFRESH_RATE = refresh_rate
         self.oled = self.__initialize_oled()
-        self.display_update_thread = Thread(target=self.__reset_oled, daemon=True)
-        self.display_update_thread.start()
+        # self.display_update_thread = Thread(target=self.__reset_oled, daemon=True)
+        # self.display_update_thread.start()
 
     def __initialize_oled(self):
         spi = board.SPI()
@@ -31,12 +31,12 @@ class OledDisplay(Display):
         self.oled.show()
 
     def show(self, image: Image.Image):
+        self.__reset_oled()
         self.oled.image(image)
         self.oled.show()
 
     def show_text(self, text: str, font_size: int = 10):
         image = Image.new("1", (self.oled.width, self.oled.height))
-
         draw = ImageDraw.Draw(image)
 
         font = ImageFont.truetype("DejaVuSansMono.ttf", font_size)
