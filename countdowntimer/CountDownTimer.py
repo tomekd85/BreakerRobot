@@ -17,9 +17,10 @@ class CountDownTimer:
             now = get_now()
 
     def count(self, time_in_seconds: int):
+        font_size = 30
         for sec in range(time_in_seconds, 0, -1):
             ty_sec = time.gmtime(sec)
             text = time.strftime("%M:%S", ty_sec)
             self.sleep(1)
-            self.display.show_text(text, 20)
-        self.display.show_text(ZERO_TIME)
+            self.display.show_text(text, font_size)
+        self.display.show_text(ZERO_TIME, font_size)
