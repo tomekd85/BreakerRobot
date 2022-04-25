@@ -16,8 +16,8 @@ class OledDisplay(Display):
         self.HEIGHT = 64
         self.REFRESH_RATE = refresh_rate
         self.oled = self.__initialize_oled()
-        # self.display_update_thread = Thread(target=self.__reset_oled, daemon=True)
-        # self.display_update_thread.start()
+        self.display_update_thread = Thread(target=self.__reset_oled, daemon=True)
+        self.display_update_thread.start()
 
     def __initialize_oled(self):
         spi = board.SPI()
