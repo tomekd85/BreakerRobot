@@ -39,7 +39,7 @@ class OledDisplay(Display):
 
         draw = ImageDraw.Draw(image)
 
-        font = ImageFont.load("arial.pil")
+        font = ImageFont.truetype("DejaVuSansMono.ttf", 10)
         (font_width, font_height) = font.getsize(text)
         draw.text(
             (self.oled.width // 2 - font_width // 2, self.oled.height // 2 - font_height // 2),
