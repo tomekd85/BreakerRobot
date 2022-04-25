@@ -31,7 +31,6 @@ class OledDisplay(Display):
         self.oled.show()
 
     def show(self, image: Image.Image):
-        self.__reset_oled()
         self.oled.image(image)
         self.oled.show()
 
@@ -48,6 +47,7 @@ class OledDisplay(Display):
             fill=255,
         )
         self.show(image)
+        self.__reset_oled()
 
     def __reset_oled(self):
         """
