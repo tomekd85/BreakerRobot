@@ -26,6 +26,10 @@ class OledDisplay(Display):
         oled_dc = digitalio.DigitalInOut(board.D6)
         return adafruit_ssd1306.SSD1306_SPI(self.WIDTH, self.HEIGHT, spi, oled_dc, oled_reset, oled_cs)
 
+    def fill(self, *args, **kwargs):
+        self.oled.fill(*args, **kwargs)
+        self.oled.show()
+
     def show(self, image: Image):
         self.oled.image(image)
         self.oled.show()
