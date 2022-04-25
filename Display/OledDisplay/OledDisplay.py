@@ -47,7 +47,7 @@ class OledDisplay(Display):
             font=font,
             fill=255,
         )
-        self.show(image)
+        self.show(image, refresh_rate)
 
     def __reset_oled(self):
         """
