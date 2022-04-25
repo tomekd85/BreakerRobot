@@ -22,5 +22,5 @@ class CountDownTimer:
             ty_sec = time.gmtime(sec)
             text = time.strftime("%M:%S", ty_sec)
             self.sleep(1)
-            self.display.show_text(text, font_size, 1)
+            self.display.show_text(text, font_size, 2)
         self.display.show_text(ZERO_TIME, font_size, 10)
