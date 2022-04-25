@@ -31,6 +31,7 @@ class OledDisplay(Display):
         self.oled.show()
 
     def show(self, image: Image.Image):
+        self.__restart_display()
         self.oled.image(image)
         self.oled.show()
 
@@ -46,7 +47,6 @@ class OledDisplay(Display):
             font=font,
             fill=255,
         )
-        self.__reset_oled()
         self.show(image)
 
     def __reset_oled(self):
@@ -60,10 +60,13 @@ class OledDisplay(Display):
         remaining 4 seconds screen is empty.
         """
         while True:
-            # time.sleep(self.REFRESH_RATE)
+            time.sleep(self.REFRESH_RATE)
             temp_buff = bytearray((self.oled.height // 8) * self.oled.width)
             temp_buff[:] = self.oled.buf
-            self.oled.poweron()
-            self.oled.init_display()
+            self.__restart_display()
             self.oled.buf[:] = temp_buff
             self.oled.show()
+
+    def __restart_display(self):
+        self.oled.poweron()
+        self.oled.init_display()
