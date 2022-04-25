@@ -11,7 +11,7 @@ from Display.Display import Display
 
 class OledDisplay(Display):
 
-    def __init__(self, refresh_rate: int = 3):
+    def __init__(self, refresh_rate: float = 3):
         self.WIDTH = 128
         self.HEIGHT = 64
         self.REFRESH_RATE = refresh_rate
