@@ -4,8 +4,7 @@ from threading import Thread
 import adafruit_ssd1306
 import board
 import digitalio
-from PIL import ImageFont, ImageDraw
-from PIL.Image import Image
+from PIL import ImageFont, ImageDraw, Image
 
 from Display.Display import Display
 
@@ -31,7 +30,7 @@ class OledDisplay(Display):
         self.oled.fill(*args, **kwargs)
         self.oled.show()
 
-    def show(self, image: Image):
+    def show(self, image: Image.Image):
         self.oled.image(image)
         self.oled.show()
 
