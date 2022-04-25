@@ -20,6 +20,11 @@ if __name__ == "__main__":
     image = Image.open(image_name).convert("1")
 
     # Display image
-    oled.show(image)
+    oled.show(image, 1)
 
-    time.sleep(30)
+    time.sleep(10)
+
+    oled.show(image, 5)
+
+    time.sleep(20)
+

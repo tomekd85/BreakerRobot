@@ -30,12 +30,12 @@ class OledDisplay(Display):
         self.oled.fill(*args, **kwargs)
         self.oled.show()
 
-    def show(self, image: Image.Image):
-        self.__restart_display()
+    def show(self, image: Image.Image, refresh_rate: float = 3):
+        self.REFRESH_RATE = refresh_rate
         self.oled.image(image)
         self.oled.show()
 
-    def show_text(self, text: str, font_size: int = 10):
+    def show_text(self, text: str, font_size: int = 10, refresh_rate: float = 3):
         image = Image.new("1", (self.oled.width, self.oled.height))
         draw = ImageDraw.Draw(image)
 
