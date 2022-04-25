@@ -1,27 +1,10 @@
 import time
-import board
-import busio
 import math
 from PIL import Image, ImageDraw, ImageFont
-from digitalio import DigitalInOut
-
-# Import the SSD1306 module.
-import adafruit_ssd1306
 
 from Display.OledDisplay.OledDisplay import OledDisplay
 
-WIDTH = 128
-HEIGHT = 64  # Change to 64 if needed
-BORDER = 5
-
-# Define the Reset Pin
-oled_reset = DigitalInOut(board.D4)
-# Use for SPI
-spi = board.SPI()
-oled_cs = DigitalInOut(board.D5)
-oled_dc = DigitalInOut(board.D6)
 disp = OledDisplay()
-
 
 # Get display width and height.
 width = disp.oled.width
