@@ -3,6 +3,6 @@ from countdowntimer.CountDownTimer import CountDownTimer
 
 
 if __name__ == '__main__':
-    oled = OledDisplay()
+    oled = OledDisplay(7)
     timer = CountDownTimer(oled)
-    timer.count(20)
+    timer.count(21)
