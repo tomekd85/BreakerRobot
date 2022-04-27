@@ -10,9 +10,6 @@ disp = OledDisplay()
 width = disp.oled.width
 height = disp.oled.height
 
-# Clear display.
-disp.fill(0)
-
 # Create image buffer.
 # Make sure to create image with mode '1' for 1-bit color.
 image = Image.new("1", (width, height))

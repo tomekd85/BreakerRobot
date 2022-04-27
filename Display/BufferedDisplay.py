@@ -8,10 +8,10 @@ class BufferedDisplay(Display):
     def __init__(self):
         self.buffer = ""
 
-    def show_text(self, text: str, font_size=10, refresh_rate=3):
+    def show_text(self, text: str, font_size: int = 10):
         self.buffer += text
 
-    def show(self, image: Image, refresh_rate=3):
+    def show(self, image: Image):
         self.buffer += repr(image)
 
     def get_buffer(self):
