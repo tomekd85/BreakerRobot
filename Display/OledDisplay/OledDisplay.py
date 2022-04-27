@@ -3,7 +3,7 @@ from threading import Thread
 
 
 from PIL import ImageFont, ImageDraw, Image
-from luma.emulator.device import pygame
+# from luma.emulator.device import pygame
 from luma.oled.device import ssd1306
 from luma.core.interface.serial import spi
 
