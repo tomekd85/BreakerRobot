@@ -4,6 +4,8 @@ from threading import Thread
 
 from PIL import ImageFont, ImageDraw, Image
 from luma.emulator.device import pygame
+from luma.oled.device import ssd1306
+from luma.core.interface.serial import spi
 
 from Display.Display import Display
 
@@ -14,7 +16,7 @@ class OledDisplay(Display):
         self.oled = self.__initialize_oled()
 
     def __initialize_oled(self):
-        return pygame()
+        return ssd1306(serial_interface=spi())
 
     def show(self, image: Image.Image):
         self.oled.display(image)
