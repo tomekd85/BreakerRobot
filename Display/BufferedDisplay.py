@@ -9,10 +9,10 @@ class BufferedDisplay(Display):
         self.buffer = ""
 
     def show_text(self, text: str, font_size: int = 10):
-        self.buffer += text
+        self.buffer += (text + "|")
 
     def show(self, image: Image):
-        self.buffer += repr(image)
+        self.buffer += image.filename.split('/')[-1] + "|"
 
     def get_buffer(self):
         return self.buffer
