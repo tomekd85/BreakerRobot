@@ -1,11 +1,9 @@
 import time
 from pathlib import Path
-from threading import Thread
 
 from PIL import Image
 
 from Display.Display import Display
-from countdowntimer.ButtonInput.KeyboardInput import KeyboardInput
 from countdowntimer.Listener import Listener
 from countdowntimer.Observable import Observable
 

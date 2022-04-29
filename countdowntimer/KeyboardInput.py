@@ -3,12 +3,11 @@ from threading import Thread
 from pynput import keyboard
 from pynput.keyboard import KeyCode
 
-from countdowntimer.ButtonInput.ButtonInput import ButtonInput
 from countdowntimer.Listener import Listener
 from countdowntimer.Observable import Observable
 
 
-class KeyboardInput(ButtonInput, Observable):
+class KeyboardInput(Observable):
 
     def __init__(self):
         self.observers = []

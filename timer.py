@@ -1,7 +1,7 @@
 import time
 
 from Display.OledDisplay.OledDisplay import OledDisplay
-from countdowntimer.ButtonInput.KeyboardInput import KeyboardInput
+from countdowntimer.KeyboardInput import KeyboardInput
 from countdowntimer.CountDownTimer import CountDownTimer
 
 
