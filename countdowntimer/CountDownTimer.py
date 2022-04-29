@@ -1,20 +1,29 @@
 import time
 from pathlib import Path
+from threading import Thread
 
 from PIL import Image
 
 from Display.Display import Display
+from countdowntimer.ButtonInput.KeyboardInput import KeyboardInput
 from countdowntimer.Listener import Listener
+from countdowntimer.Observable import Observable
 
 ZERO_TIME = "00:00"
 
 
 class CountDownTimer(Listener):
 
-    def __init__(self, display: Display):
+    def __init__(self, display: Display, button_observable: Observable, time_in_seconds: int):
+        self.sec = 0
+        self.count_time = time_in_seconds
+        self.show_time_seconds = 0
         self.display = display
         self.text = ZERO_TIME
         self.currently_displayed_name = None
+        self.button_observable = button_observable
+        self.button_observable.register(self)
+        self.button_observable.start()
 
     def sleep(self, duration, get_now=time.perf_counter):
         now = get_now()
@@ -22,25 +31,33 @@ class CountDownTimer(Listener):
         while now < end:
             now = get_now()
 
-    def count(self, time_in_seconds: int):
-        font_size = 40
-        to_display = None
-        for sec in range(time_in_seconds, 0, -1):
-            # time_left = time.gmtime(sec)
-            # self.text = time.strftime("%M:%S", time_left)
-            if sec/time_in_seconds > 0.2:
+    def count(self):
+        self.sec = self.count_time
+        while self.sec > 0:
+            if self.sec/self.count_time > 0.2:
                 to_display = "buzia1.bmp"
             else:
                 to_display = "buzia2.bmp"
+            if self.show_time_seconds > 0:
+                to_display = self.setup_text_display(self.sec)
             self.show_on_display(to_display)
-            # self.display.show_text(self.text, font_size)
             self.sleep(1)
+            self.sec -= 1
         self.text = ZERO_TIME
         self.display.show(self.load_smile3())
 
+    def setup_text_display(self, sec):
+        time_left = time.gmtime(sec)
+        self.text = time.strftime("%M:%S", time_left)
+        self.show_time_seconds -= 1
+        return self.text
+
     def show_on_display(self, to_display):
         if to_display != self.currently_displayed_name:
-            self.display.show(self.load_image(to_display))
+            if self.text == to_display:
+                self.display.show_text(to_display, 40)
+            else:
+                self.display.show(self.load_image(to_display))
             self.currently_displayed_name = to_display
 
     def load_smile1(self) -> Image:
@@ -64,7 +81,8 @@ class CountDownTimer(Listener):
             self.reset_timer()
 
     def show_time_left(self):
-        pass
+        self.show_time_seconds = 3
 
     def reset_timer(self):
-        pass
+        self.sec = self.count_time
+

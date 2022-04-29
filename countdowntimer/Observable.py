@@ -1,4 +1,4 @@
-from Listener import Listener
+from countdowntimer.Listener import Listener
 
 
 class Observable:
@@ -7,5 +7,8 @@ class Observable:
         raise NotImplementedError()
 
     def notify(self, button):
+        raise NotImplementedError()
+
+    def start(self):
         raise NotImplementedError()
 
