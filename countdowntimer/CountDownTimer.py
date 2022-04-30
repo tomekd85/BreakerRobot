@@ -79,7 +79,7 @@ class CountDownTimer(Listener):
             self.reset_timer()
 
     def show_time_left(self):
-        self.show_time_seconds = 3
+        self.show_time_seconds = 5
         to_display = self.setup_text_display(self.sec)
         self.show_on_display(to_display)
 
