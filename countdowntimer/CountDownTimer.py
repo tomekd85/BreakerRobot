@@ -38,6 +38,7 @@ class CountDownTimer(Listener):
                 to_display = "buzia2.bmp"
             if self.show_time_seconds > 0:
                 to_display = self.setup_text_display(self.sec)
+                self.show_time_seconds -= 1
             self.show_on_display(to_display)
             self.sleep(1)
             self.sec -= 1
@@ -47,7 +48,6 @@ class CountDownTimer(Listener):
     def setup_text_display(self, sec):
         time_left = time.gmtime(sec)
         self.text = time.strftime("%M:%S", time_left)
-        self.show_time_seconds -= 1
         return self.text
 
     def show_on_display(self, to_display):
@@ -80,6 +80,8 @@ class CountDownTimer(Listener):
 
     def show_time_left(self):
         self.show_time_seconds = 3
+        to_display = self.setup_text_display(self.sec)
+        self.show_on_display(to_display)
 
     def reset_timer(self):
         self.sec = self.count_time
