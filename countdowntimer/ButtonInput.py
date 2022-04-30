@@ -21,7 +21,7 @@ class ButtonInput(Observable):
 
     def start(self):
         GPIO.setwarnings(False)  # Ignore warning for now
-        GPIO.setmode(GPIO.BCM)  # Use physical pin numbering
+        GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
         GPIO.setup([B1_GPIO_NUMBER, B2_GPIO_NUMBER], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.add_event_detect(B1_GPIO_NUMBER, GPIO.RISING, callback=(lambda channel: self.notify("B1")), bouncetime=200)
         GPIO.add_event_detect(B2_GPIO_NUMBER, GPIO.RISING, callback=(lambda channel: self.notify("B2")), bouncetime=200)
