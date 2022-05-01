@@ -31,19 +31,29 @@ class CountDownTimer(Listener):
 
     def count(self):
         self.sec = self.count_time
-        while self.sec > 0:
-            if self.sec/self.count_time > 0.2:
-                to_display = "buzia1.bmp"
-            else:
-                to_display = "buzia2.bmp"
-            if self.show_time_seconds > 0:
-                to_display = self.setup_text_display(self.sec)
-                self.show_time_seconds -= 1
+        while True:
+            to_display = self.get_to_display()
+            to_display = self.display_time_conditionally(to_display)
             self.show_on_display(to_display)
             self.sleep(1)
-            self.sec -= 1
-        self.text = ZERO_TIME
-        self.display.show(self.load_smile3())
+            if self.sec > 0:
+                self.sec -= 1
+
+    def display_time_conditionally(self, to_display):
+        if self.show_time_seconds > 0:
+            to_display = self.setup_text_display(self.sec)
+            self.show_time_seconds -= 1
+        return to_display
+
+    def get_to_display(self):
+        moment_in_break = self.sec / self.count_time
+        if moment_in_break > 0.2:
+            to_display = "buzia1.bmp"
+        elif 0.2 >= moment_in_break > 0:
+            to_display = "buzia2.bmp"
+        else:
+            to_display = "buzia3.bmp"
+        return to_display
 
     def setup_text_display(self, sec):
         time_left = time.gmtime(sec)
