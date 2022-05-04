@@ -3,6 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
+from Beeper import Beeper
 from Display.Display import Display
 from countdowntimer.Listener import Listener
 from countdowntimer.Observable import Observable
@@ -12,7 +13,8 @@ ZERO_TIME = "00:00"
 
 class CountDownTimer(Listener):
 
-    def __init__(self, display: Display, button_observable: Observable, time_in_seconds: int):
+    def __init__(self, display: Display, button_observable: Observable, time_in_seconds: int, buzzer: Beeper):
+        self.buzzer = buzzer
         self.sec = 0
         self.count_time = time_in_seconds
         self.show_time_seconds = 0
@@ -36,6 +38,8 @@ class CountDownTimer(Listener):
             to_display = self.display_time_conditionally(to_display)
             self.show_on_display(to_display)
             self.sleep(1)
+            if self.sec == 1:
+                self.buzzer.beep(0.8)
             if self.sec > 0:
                 self.sec -= 1
 
